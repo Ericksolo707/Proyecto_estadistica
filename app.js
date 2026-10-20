@@ -1344,7 +1344,7 @@
       const statusEl = document.getElementById("gsheet-sync-status");
       const rawUrl = urlInput
         ? urlInput.value.trim()
-        : "https://docs.google.com/spreadsheets/d/1XLrOGra7CtE_mR0VXhJbAnfdCeH6kmILLuBUTPYqj8g/edit?gid=1470654610#gid=1470654610";
+        : "https://docs.google.com/spreadsheets/d/1B2oywCb6BFszdzP0O0jtSbcAuoMOYqxOPKYMya78ebc/edit?usp=sharing";
 
       const idMatch = rawUrl.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/);
       if (!idMatch) {
@@ -1427,7 +1427,7 @@
         if (script.parentNode) script.parentNode.removeChild(script);
         if (statusEl) {
           statusEl.style.color = "var(--warning)";
-          statusEl.textContent = "⚠️ Sin conexión a internet; mostrando las 15 respuestas reales guardadas localmente.";
+          statusEl.textContent = `⚠️ Sin conexión a internet; mostrando las ${state.cleanRows.length} respuestas reales guardadas localmente.`;
         }
       };
 
@@ -1462,10 +1462,10 @@
     document.getElementById("btn-download-csv").addEventListener("click", downloadCurrentCSV);
     document.getElementById("btn-print-report").addEventListener("click", () => window.print());
 
-    // 1. Cargar de inmediato las 15 respuestas reales de respaldo
+    // 1. Cargar de inmediato las respuestas reales de respaldo
     if (window.ENCUESTA_PRECARGADA) {
-      state.encodeYesNoAsNumeric = true;
-      if (checkEncode) checkEncode.checked = true;
+      state.encodeYesNoAsNumeric = false;
+      if (checkEncode) checkEncode.checked = false;
       processDataset(
         window.ENCUESTA_PRECARGADA.headers,
         window.ENCUESTA_PRECARGADA.rows,
