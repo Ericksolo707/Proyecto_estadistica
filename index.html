@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StatAI Analytics — Uso de IA en la Educación</title>
+  <title>Estadística I | UMG — Uso de IA en la Educación</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -15,268 +15,215 @@
 </head>
 <body>
 
-  <div class="app-shell">
-    <!-- BARRA LATERAL (SIDEBAR) -->
-    <aside class="sidebar no-print">
-      <div class="sidebar-brand">
-        <div class="brand-logo">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>
-          </svg>
-        </div>
-        <div>
-          <div class="brand-name">StatAI Studio</div>
-          <div class="brand-tag">Estadística Descriptiva</div>
-        </div>
+  <!-- NAVBAR GLASSMORFISMO ESTILO UMG -->
+  <nav class="navbar-pro no-print">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <img src="logo-umg.png" alt="Logo UMG" style="height: 46px; width: auto; object-fit: contain;">
+        <span class="brand-text">Estadística I - UMG</span>
       </div>
 
-      <div class="sidebar-section-label">Vistas Principales</div>
-      <nav class="sidebar-nav">
-        <button class="tab-btn active" data-tab="tab-analysis">
-          <span class="nav-icon">📊</span>
-          <span>Explorador por Pregunta</span>
-        </button>
-        <button class="tab-btn" data-tab="tab-upload">
-          <span class="nav-icon">🗂️</span>
-          <span>Fuente de Datos y Variables</span>
-        </button>
-        <button class="tab-btn" data-tab="tab-report">
-          <span class="nav-icon">📑</span>
-          <span>Informe y Conclusiones</span>
-        </button>
-        <button class="tab-btn" data-tab="tab-rawdata">
-          <span class="nav-icon">📋</span>
-          <span>Base de Datos (Tabla)</span>
-        </button>
-      </nav>
+      <div class="nav-links">
+        <button class="tab-btn active" data-tab="tab-analysis">Análisis por Pregunta</button>
+        <button class="tab-btn" data-tab="tab-upload">Datos y Variables</button>
+        <button class="tab-btn" data-tab="tab-report">Informe y Conclusiones</button>
+        <button class="tab-btn" data-tab="tab-rawdata">Base de Datos</button>
+      </div>
 
-      <div class="sidebar-section-label" style="margin-top:20px;">Acciones Rápidas</div>
-      <div class="sidebar-actions">
-        <button id="btn-sync-gsheet-top" class="side-action-btn primary-action" title="Sincronizar datos en tiempo real desde Google Sheets">
-          <span>☁️</span>
-          <span>Sincronizar Google Sheets</span>
+      <div class="nav-actions">
+        <button id="btn-sync-gsheet-top" class="btn-outline-nav" title="Sincronizar datos en tiempo real desde Google Sheets">
+          ☁️ Sincronizar Sheets
         </button>
-        <button id="btn-load-default" class="side-action-btn" title="Recargar las respuestas actuales">
-          <span>🔄</span>
-          <span>Actualizar Tabla</span>
-        </button>
-        <a id="link-google-form" href="https://docs.google.com/forms/d/e/1FAIpQLSeQwHH52FCeJdZL0oatgnzAVD8HCbjaAA-xUYRTVgI16nrBAg/viewform" target="_blank" rel="noopener" class="side-action-btn" title="Abrir encuesta en Google Forms">
-          <span>📝</span>
-          <span>Abrir Google Forms</span>
+        <a id="link-google-form" href="https://docs.google.com/forms/d/e/1FAIpQLSeQwHH52FCeJdZL0oatgnzAVD8HCbjaAA-xUYRTVgI16nrBAg/viewform" target="_blank" rel="noopener" class="btn-outline-nav" title="Abrir encuesta en Google Forms">
+          📝 Encuesta
         </a>
-        <button id="btn-download-csv" class="side-action-btn" title="Descargar archivo CSV">
-          <span>⬇️</span>
-          <span>Descargar CSV</span>
-        </button>
-        <button id="btn-print-report" class="side-action-btn" title="Imprimir o guardar en PDF">
-          <span>🖨️</span>
-          <span>Exportar Vista a PDF</span>
+        <button id="btn-print-report" class="btn-primary-umg" title="Imprimir o exportar reporte en PDF">
+          🖨️ Exportar PDF
         </button>
       </div>
-
-      <div class="sidebar-footer">
-        <div class="live-indicator">
-          <span class="pulse-dot"></span>
-          <span>Conectado a Google Sheets</span>
-        </div>
-      </div>
-    </aside>
-
-    <!-- ÁREA DE CONTENIDO PRINCIPAL -->
-    <div class="workspace">
-      <!-- Barra Superior (Topbar) -->
-      <header class="topbar">
-        <div class="topbar-left">
-          <span class="topic-pill">Estudio Activo</span>
-          <h1 class="topbar-title">Uso de Inteligencia Artificial en la Educación</h1>
-        </div>
-        <div class="topbar-right no-print">
-          <button id="btn-theme-toggle" class="theme-toggle-btn" title="Alternar entre Modo Claro y Modo Oscuro">
-            <span id="theme-icon">🌙</span>
-            <span id="theme-label">Modo Oscuro</span>
-          </button>
-        </div>
-      </header>
-
-      <main class="main-container">
-        <!-- Tarjetas de Resumen (KPIs) -->
-        <section class="kpi-grid">
-          <div class="kpi-card">
-            <div class="kpi-top">
-              <span class="kpi-label">Muestra Procesada (n)</span>
-              <span class="kpi-icon-box blue">👥</span>
-            </div>
-            <span id="kpi-total-rows" class="kpi-value">54</span>
-            <span id="kpi-file-name" class="kpi-note">Google Sheets en Vivo</span>
-          </div>
-
-          <div class="kpi-card">
-            <div class="kpi-top">
-              <span class="kpi-label">Variables Activas</span>
-              <span class="kpi-icon-box indigo">📐</span>
-            </div>
-            <span id="kpi-total-vars" class="kpi-value">10</span>
-            <span id="kpi-vars-breakdown" class="kpi-note">8 Cuantitativas · 2 Cualitativas</span>
-          </div>
-
-          <div class="kpi-card">
-            <div class="kpi-top">
-              <span class="kpi-label">Integridad de Datos</span>
-              <span class="kpi-icon-box emerald">✓</span>
-            </div>
-            <span id="kpi-data-quality" class="kpi-value" style="color:var(--success);">100% Válido</span>
-            <span id="kpi-duplicates" class="kpi-note">0 duplicados detectados</span>
-          </div>
-
-          <div class="kpi-card">
-            <div class="kpi-top">
-              <span class="kpi-label">Fuente de Datos</span>
-              <span class="kpi-icon-box amber">☁️</span>
-            </div>
-            <span class="kpi-value" style="font-size:1.18rem;line-height:1.3;margin-top:4px;">Google Forms / Sheets</span>
-            <span class="kpi-note">Sincronización automática</span>
-          </div>
-        </section>
-
-        <!-- PESTAÑA 1: EXPLORADOR ENFOCADO POR PREGUNTA (SPLIT VIEW) -->
-        <section id="tab-analysis" class="tab-panel active">
-          <div class="analysis-split-layout">
-            <!-- Columna Izquierda: Lista vertical de preguntas -->
-            <aside class="question-sidebar no-print">
-              <div class="q-sidebar-header">
-                <div>
-                  <h2 class="q-sidebar-title">Preguntas de la Encuesta</h2>
-                  <p class="q-sidebar-sub">Selecciona una variable para inspeccionar</p>
-                </div>
-              </div>
-              <div id="question-filter-bar" class="question-vertical-list"></div>
-            </aside>
-
-            <!-- Columna Derecha: Panel detallado de la pregunta activa -->
-            <div class="question-detail-stage">
-              <div id="questions-analysis-container"></div>
-            </div>
-          </div>
-        </section>
-
-        <!-- PESTAÑA 2: FUENTE DE DATOS Y VARIABLES -->
-        <section id="tab-upload" class="tab-panel">
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Carga de Archivos y Sincronización en la Nube</h2>
-                <p class="card-subtitle">
-                  Importa archivos locales (<code>.xlsx</code> o <code>.csv</code>) o sincroniza directamente los registros desde Google Sheets.
-                </p>
-              </div>
-            </div>
-
-            <div class="upload-grid">
-              <div id="dropzone" class="dropzone">
-                <div class="dropzone-icon">📂</div>
-                <div class="dropzone-title">Arrastra aquí tu archivo .XLSX o .CSV</div>
-                <p class="dropzone-desc">
-                  Compatible con libros de Excel (<code>.xlsx</code>) y archivos de valores separados por comas (<code>.csv</code>).
-                </p>
-                <span class="btn btn-primary">Seleccionar archivo local</span>
-                <input id="file-input" type="file" accept=".xlsx,.xls,.csv" style="display:none;" />
-              </div>
-
-              <div class="card" style="margin-bottom:0;background:var(--surface-alt);">
-                <h3 style="font-size:1rem;margin-bottom:8px;">☁️ Conexión en Vivo con Google Sheets</h3>
-                <p style="font-size:0.84rem;color:var(--text-muted);margin-bottom:12px;">
-                  Enlace conectado a la hoja de respuestas de la encuesta. Presiona <strong>Sincronizar Ahora</strong> para obtener los datos más recientes:
-                </p>
-                <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
-                  <input
-                    id="gsheet-url-input"
-                    type="text"
-                    class="select-control"
-                    style="flex:1;min-width:200px;"
-                    value="https://docs.google.com/spreadsheets/d/1B2oywCb6BFszdzP0O0jtSbcAuoMOYqxOPKYMya78ebc/edit?usp=sharing"
-                  />
-                  <button id="btn-sync-gsheet" class="btn btn-primary">
-                    ☁️ Sincronizar Ahora
-                  </button>
-                </div>
-                <div id="gsheet-sync-status" style="font-size:0.82rem;color:var(--text-muted);margin-bottom:14px;"></div>
-
-                <label class="toggle-box">
-                  <input type="checkbox" id="chk-encode-yesno" style="margin-top:3px;" />
-                  <span>
-                    <strong>Codificar "Sí = 1 / No = 0" automáticamente:</strong> Permite procesar numéricamente preguntas dicotómicas (Sí/No).
-                  </span>
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Estructura de Variables y Depuración</h2>
-                <p class="card-subtitle">
-                  Revisa las variables detectadas y ajusta manualmente su clasificación estadística si lo requieres.
-                </p>
-              </div>
-            </div>
-
-            <div class="table-responsive">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Columna</th>
-                    <th>Pregunta / Variable (Encabezado)</th>
-                    <th>Clasificación Activa</th>
-                    <th>Tipo Asignado</th>
-                    <th class="num-col">Válidos</th>
-                    <th class="num-col">Únicos</th>
-                    <th>Estado</th>
-                  </tr>
-                </thead>
-                <tbody id="variables-table-body"></tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-
-        <!-- PESTAÑA 3: INFORME EJECUTIVO Y CONCLUSIONES -->
-        <section id="tab-report" class="tab-panel">
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Informe Estadístico, Conclusiones y Recomendaciones</h2>
-                <p class="card-subtitle">
-                  Síntesis analítica generada a partir de las medidas descriptivas de la muestra.
-                </p>
-              </div>
-            </div>
-            <div id="executive-report-content"></div>
-          </div>
-        </section>
-
-        <!-- PESTAÑA 4: TABLA DE DATOS COMPLETA -->
-        <section id="tab-rawdata" class="tab-panel">
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Base de Datos Procesada</h2>
-                <p class="card-subtitle">
-                  Registros completos importados desde la fuente de datos activa.
-                </p>
-              </div>
-            </div>
-            <div class="table-responsive" style="max-height:600px;overflow-y:auto;">
-              <table>
-                <thead id="raw-data-thead"></thead>
-                <tbody id="raw-data-tbody"></tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-      </main>
     </div>
-  </div>
+  </nav>
+
+  <!-- HERO SECTION ESTILO CALKETH² UMG -->
+  <header class="hero">
+    <div class="hero-badge">✨ Plataforma interactiva de análisis estadístico</div>
+    <h1 class="hero-title">Uso de <span class="text-gradient">Inteligencia Artificial</span> en la Educación</h1>
+    <p class="hero-subtitle">
+      Sistema automatizado de Estadística Descriptiva para el procesamiento, representación gráfica e interpretación de datos en tiempo real.
+    </p>
+  </header>
+
+  <main class="container">
+
+    <!-- TARJETAS BENTO DE RESUMEN (KPIs) -->
+    <section class="bento-kpi-grid">
+      <div class="bento-card">
+        <div class="card-info">
+          <span class="tag tag-blue">Muestra Activa</span>
+          <h3 id="kpi-total-rows" class="bento-metric">54</h3>
+          <p id="kpi-file-name">Google Sheets en Vivo</p>
+        </div>
+        <div class="card-icon">👥</div>
+      </div>
+
+      <div class="bento-card">
+        <div class="card-info">
+          <span class="tag tag-purple">Cuestionario</span>
+          <h3 id="kpi-total-vars" class="bento-metric">10</h3>
+          <p id="kpi-vars-breakdown">8 Cuantitativas · 2 Cualitativas</p>
+        </div>
+        <div class="card-icon">📐</div>
+      </div>
+
+      <div class="bento-card">
+        <div class="card-info">
+          <span class="tag tag-green">Calidad de Datos</span>
+          <h3 id="kpi-data-quality" class="bento-metric" style="font-size:1.55rem;">100% Válido</h3>
+          <p id="kpi-duplicates">0 duplicados detectados</p>
+        </div>
+        <div class="card-icon">✅</div>
+      </div>
+
+      <div class="bento-card">
+        <div class="card-info">
+          <span class="tag tag-blue">Acciones de Datos</span>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+            <button id="btn-load-default" class="btn-chip">🔄 Actualizar</button>
+            <button id="btn-download-csv" class="btn-chip">⬇️ Descargar CSV</button>
+          </div>
+          <p style="margin-top:8px;">Conectado a Google Forms</p>
+        </div>
+        <div class="card-icon">📊</div>
+      </div>
+    </section>
+
+    <!-- PESTAÑA 1: EXPLORADOR ENFOCADO POR PREGUNTA -->
+    <section id="tab-analysis" class="tab-panel active">
+      <h2 class="section-title">Explorador Estadístico por Pregunta</h2>
+
+      <div class="analysis-split-layout">
+        <!-- Columna Izquierda: Lista de preguntas -->
+        <aside class="question-sidebar no-print">
+          <div class="q-sidebar-header">
+            <h3 class="q-sidebar-title">Variables del Estudio</h3>
+            <p class="q-sidebar-sub">Selecciona una pregunta para ver su análisis</p>
+          </div>
+          <div id="question-filter-bar" class="question-vertical-list"></div>
+        </aside>
+
+        <!-- Columna Derecha: Panel detallado de la pregunta activa -->
+        <div class="question-detail-stage">
+          <div id="questions-analysis-container"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PESTAÑA 2: FUENTE DE DATOS Y VARIABLES -->
+    <section id="tab-upload" class="tab-panel">
+      <h2 class="section-title">Carga de Archivos y Sincronización con Google Sheets</h2>
+
+      <div class="card-teoria">
+        <div class="upload-grid">
+          <div id="dropzone" class="dropzone">
+            <div class="dropzone-icon">📂</div>
+            <div class="dropzone-title">Haz clic aquí o arrastra tu archivo .XLSX o .CSV</div>
+            <p class="dropzone-desc">
+              Compatible con hojas de cálculo de Microsoft Excel (<code>.xlsx</code>) y archivos separados por comas (<code>.csv</code>).
+            </p>
+            <span class="btn-primary-umg" style="display:inline-block;cursor:pointer;">Seleccionar archivo local</span>
+            <input id="file-input" type="file" accept=".xlsx,.xls,.csv" style="display:none;" />
+          </div>
+
+          <div class="formula-box" style="margin-top:0;display:flex;flex-direction:column;justify-content:center;">
+            <h3 style="font-size:1.1rem;margin-bottom:8px;">☁️ Conexión en Vivo con Google Sheets</h3>
+            <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:14px;">
+              Enlace conectado directamente a la hoja de cálculo de la encuesta. Presiona <strong>Sincronizar Ahora</strong> para actualizar las respuestas:
+            </p>
+            <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
+              <input
+                id="gsheet-url-input"
+                type="text"
+                class="select-control"
+                style="flex:1;min-width:200px;"
+                value="https://docs.google.com/spreadsheets/d/1B2oywCb6BFszdzP0O0jtSbcAuoMOYqxOPKYMya78ebc/edit?usp=sharing"
+              />
+              <button id="btn-sync-gsheet" class="btn-primary-umg">
+                ☁️ Sincronizar Ahora
+              </button>
+            </div>
+            <div id="gsheet-sync-status" style="font-size:0.85rem;color:var(--text-muted);margin-bottom:12px;"></div>
+
+            <label class="toggle-box">
+              <input type="checkbox" id="chk-encode-yesno" style="margin-top:3px;" />
+              <span>
+                <strong>Codificar "Sí = 1 / No = 0" automáticamente:</strong> Permite procesar numéricamente preguntas dicotómicas en caso de requerirlo.
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Estructura de Variables y Validación</h2>
+      <div class="card-teoria">
+        <p style="color:var(--text-muted);margin-bottom:16px;font-size:0.95rem;">
+          Revisa las variables identificadas en el cuestionario y cambia manualmente su clasificación estadística si deseas alternar entre tabla simple, agrupada por intervalos o cualitativa.
+        </p>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Columna</th>
+                <th>Pregunta / Variable (Encabezado)</th>
+                <th>Clasificación Activa</th>
+                <th>Tipo Asignado</th>
+                <th class="num-col">Válidos</th>
+                <th class="num-col">Únicos</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody id="variables-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- PESTAÑA 3: INFORME EJECUTIVO Y CONCLUSIONES -->
+    <section id="tab-report" class="tab-panel">
+      <h2 class="section-title">Informe Estadístico, Conclusiones y Recomendaciones</h2>
+      <div class="card-teoria">
+        <div id="executive-report-content"></div>
+      </div>
+    </section>
+
+    <!-- PESTAÑA 4: TABLA DE DATOS COMPLETA -->
+    <section id="tab-rawdata" class="tab-panel">
+      <h2 class="section-title">Base de Datos Completa (Respuestas Recolectadas)</h2>
+      <div class="card-teoria">
+        <div class="table-responsive" style="max-height:600px;overflow-y:auto;">
+          <table>
+            <thead id="raw-data-thead"></thead>
+            <tbody id="raw-data-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- EQUIPO DE DESARROLLO ESTILO PÍLDORAS -->
+    <section class="mt-5 no-print">
+      <h2 class="section-title">Equipo de Desarrollo</h2>
+      <div class="team-flex">
+        <div class="team-member">⭐ Andy David Valdés <small style="display:block; font-size:0.75rem; opacity:0.7;">Coordinador</small></div>
+        <div class="team-member">Gerson Enrique Recinos Lemus</div>
+        <div class="team-member">Angel Daniel Vásquez Leal</div>
+        <div class="team-member">Erick Efraín Solórzano Jiménez</div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="no-print">
+    <p>UNIVERSIDAD MARIANO GÁLVEZ DE GUATEMALA | FACULTAD DE INGENIERÍA EN SISTEMAS | ESTADÍSTICA I — 2026</p>
+  </footer>
 
   <!-- Dataset precargado y motor estadístico -->
   <script src="datos_encuesta.js"></script>
