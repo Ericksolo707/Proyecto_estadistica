@@ -34,6 +34,10 @@
   font-family: 'Inter', sans-serif;
 }
 
+button[data-tab="tab-report"] {
+    display: none;
+}
+
 body {
   background-color: var(--bg-app);
   color: var(--text-main);
